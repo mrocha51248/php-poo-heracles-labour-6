@@ -15,7 +15,7 @@ class Shovel implements Equipable
      */
     public function getImage(): string
     {
-        return $this->image;
+        return 'assets/images/' . $this->image;
     }
 
     /**
