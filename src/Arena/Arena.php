@@ -8,7 +8,7 @@ use App\Movable;
 use App\Tile\Tile;
 use Exception;
 
-class Arena
+abstract class Arena
 {
     public const DIRECTIONS = [
         'N' => [0, -1],
@@ -45,7 +45,7 @@ class Arena
     {
         $this->move($this->getHero(), $direction);
 
-        foreach($this->getMonsters() as $monster) {
+        foreach ($this->getMonsters() as $monster) {
             if ($monster instanceof Movable) {
                 $randomDirection = array_rand(self::DIRECTIONS);
                 $this->move($monster, $randomDirection);
@@ -177,4 +177,6 @@ class Arena
         }
         return $tiles;
     }
+
+    abstract public function isVictory(): bool;
 }
