@@ -9,6 +9,7 @@ use App\Inventory\Weapon;
 use App\Tile\Building;
 use App\Tile\Bush;
 use App\Tile\Grass;
+use App\Tile\Tile;
 use App\Tile\Water;
 use Exception;
 
@@ -154,5 +155,16 @@ class ArenaAugeas extends Arena
             throw new Exception("Hero doesn't have a Shovel equipped");
         }
         $tile->dig();
+        $this->fill($tile);
+    }
+
+    private function fill(Tile $tile) {
+        foreach ($this->getAdjacentTiles($tile) as $adjTile) {
+            if ($adjTile instanceof Water) {
+                $newTile = new Water($tile->getX(), $tile->getY());
+                $this->replaceTile($newTile);
+                return;
+            }
+        }
     }
 }
