@@ -15,6 +15,9 @@ use Exception;
 
 class ArenaAugeas extends Arena
 {
+    private const VICTORY_X = 5;
+    private const VICTORY_Y = 7;
+
     public function __construct()
     {
         $sword = new Weapon(10);
@@ -174,5 +177,10 @@ class ArenaAugeas extends Arena
             }
         }
         return;
+    }
+
+    public function isVictory(): bool
+    {
+        return $this->getTile(self::VICTORY_X, self::VICTORY_Y) instanceof Water;
     }
 }
