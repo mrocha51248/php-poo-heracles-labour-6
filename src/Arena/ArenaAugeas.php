@@ -134,18 +134,19 @@ class ArenaAugeas extends Arena
         $buildings = [
             new Building(4, 8),
             new Building(5, 8),
-            new Building(6, 8), 
+            new Building(6, 8),
             new Building(4, 9),
             new Building(5, 9),
             new Building(6, 9),
         ];
-       
+
         $tiles = [...$waters, ...$grasses, ...$bushes, ...$buildings];
 
         parent::__construct($hero, $monsters, $tiles);
     }
 
-    public function digArena() {
+    public function digArena()
+    {
         $hero = $this->getHero();
         $tile = $this->getTile($hero->getX(), $hero->getY());
         if (!($tile instanceof Grass)) {
@@ -155,16 +156,23 @@ class ArenaAugeas extends Arena
             throw new Exception("Hero doesn't have a Shovel equipped");
         }
         $tile->dig();
-        $this->fill($tile);
-    }
-
-    private function fill(Tile $tile) {
         foreach ($this->getAdjacentTiles($tile) as $adjTile) {
             if ($adjTile instanceof Water) {
-                $newTile = new Water($tile->getX(), $tile->getY());
-                $this->replaceTile($newTile);
-                return;
+                $this->fill($tile);
             }
         }
+    }
+
+    private function fill(Tile $tile)
+    {
+        $newTile = new Water($tile->getX(), $tile->getY());
+        $this->replaceTile($newTile);
+
+        foreach ($this->getAdjacentTiles($tile) as $adjTile) {
+            if ($adjTile instanceof Grass && $adjTile->isDigged()) {
+                $this->fill($adjTile);
+            }
+        }
+        return;
     }
 }
