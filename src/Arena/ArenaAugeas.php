@@ -4,6 +4,7 @@ namespace App\Arena;
 
 use App\Fighter\Hero;
 use App\Inventory\Shield;
+use App\Inventory\Shovel;
 use App\Inventory\Weapon;
 use App\Tile\Building;
 use App\Tile\Bush;
@@ -16,9 +17,11 @@ class ArenaAugeas extends Arena
     {
         $sword = new Weapon(10);
         $shield = new Shield();
+        $shovel = new Shovel();
         $hero = new Hero('Heracles', 0, 0);
         $hero->setWeapon($sword);
         $hero->setShield($shield);
+        $hero->setSecondHand($shovel);
 
         $monsters = [];
 
