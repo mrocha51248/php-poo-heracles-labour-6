@@ -10,6 +10,7 @@ use App\Tile\Building;
 use App\Tile\Bush;
 use App\Tile\Grass;
 use App\Tile\Water;
+use Exception;
 
 class ArenaAugeas extends Arena
 {
@@ -141,5 +142,16 @@ class ArenaAugeas extends Arena
         $tiles = [...$waters, ...$grasses, ...$bushes, ...$buildings];
 
         parent::__construct($hero, $monsters, $tiles);
+    }
+
+    public function digArena() {
+        $hero = $this->getHero();
+        $tile = $this->getTile($hero->getX(), $hero->getY());
+        if (!($tile instanceof Grass)) {
+            throw new Exception("Not a Grass tile");
+        }
+        if (!($hero->getSecondHand() instanceof Shovel)) {
+            throw new Exception("Hero doesn't have a Shovel equipped");
+        }
     }
 }
