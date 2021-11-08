@@ -158,4 +158,11 @@ class Arena
             unset($this->tiles[$key]);
         }
     }
+
+    public function replaceTile(Tile $tile): void
+    {
+        $oldTile = $this->getTile($tile->getX(), $tile->getY());
+        $this->removeTile($oldTile);
+        $this->addTile($tile);
+    }
 }
