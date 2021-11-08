@@ -2,7 +2,9 @@
 
 namespace App\Inventory;
 
-class Shield
+use App\Equipable;
+
+class Shield implements Equipable
 {
     private int $protection = 10;
     private string $image = 'shield.svg';

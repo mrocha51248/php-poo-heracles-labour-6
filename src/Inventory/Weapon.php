@@ -2,7 +2,9 @@
 
 namespace App\Inventory;
 
-class Weapon
+use App\Equipable;
+
+class Weapon implements Equipable
 {
     private int $damage = 10;
 
