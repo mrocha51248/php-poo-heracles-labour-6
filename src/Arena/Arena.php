@@ -150,4 +150,12 @@ class Arena
     {
         $this->tiles[] = $tile;
     }
+
+    public function removeTile(Tile $tile): void
+    {
+        $key = array_search($tile, $this->tiles);
+        if ($key !== false) {
+            unset($this->tiles[$key]);
+        }
+    }
 }
