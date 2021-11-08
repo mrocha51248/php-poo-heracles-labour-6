@@ -7,6 +7,12 @@ class Grass extends Tile
     protected string $image = 'grass.png';  
     protected bool $digged = false;
 
+    public function dig(): void
+    {
+        $this->setDigged(true);
+        $this->setImage('hole.png');
+    }
+
     /**
      * Get the value of digged
      *

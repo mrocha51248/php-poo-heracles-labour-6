@@ -153,5 +153,6 @@ class ArenaAugeas extends Arena
         if (!($hero->getSecondHand() instanceof Shovel)) {
             throw new Exception("Hero doesn't have a Shovel equipped");
         }
+        $tile->dig();
     }
 }
