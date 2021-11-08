@@ -6,7 +6,7 @@ use App\Equipable;
 
 class Shovel implements Equipable
 {
-    private string $image = 'shield.svg';
+    private string $image = 'shovel.svg';
 
     /**
      * Get the value of image
