@@ -145,4 +145,9 @@ class Arena
     {
         return $this->tiles;
     }
+
+    public function addTile(Tile $tile): void
+    {
+        $this->tiles[] = $tile;
+    }
 }
