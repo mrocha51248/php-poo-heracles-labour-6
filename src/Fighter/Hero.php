@@ -2,6 +2,7 @@
 
 namespace App\Fighter;
 
+use App\Equipable;
 use App\Inventory\Shield;
 use App\Inventory\Weapon;
 use App\Movable;
@@ -10,6 +11,7 @@ class Hero extends Fighter implements Movable
 {
     private ?Weapon $weapon = null;
     private ?Shield $shield = null;
+    private ?Equipable $secondHand = null;
     protected int $strength = 20;
     protected int $dexterity = 6;
     protected string $image = 'heracles.svg';
@@ -78,5 +80,29 @@ class Hero extends Fighter implements Movable
     public function setShield(?Shield $shield): void
     {
         $this->shield = $shield;
+    }
+
+    /**
+     * Get the value of secondHand
+     *
+     * @return ?Equipable
+     */
+    public function getSecondHand(): ?Equipable
+    {
+        return $this->secondHand;
+    }
+
+    /**
+     * Set the value of secondHand
+     *
+     * @param ?Equipable $secondHand
+     *
+     * @return self
+     */
+    public function setSecondHand(?Equipable $secondHand): self
+    {
+        $this->secondHand = $secondHand;
+
+        return $this;
     }
 }
