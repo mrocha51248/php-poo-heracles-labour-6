@@ -165,4 +165,16 @@ class Arena
         $this->removeTile($oldTile);
         $this->addTile($tile);
     }
+
+    public function getAdjacentTiles(Tile $tile): array
+    {
+        $tiles = [];
+        foreach (array_values(self::DIRECTIONS) as $offset) {
+            $adjTile = $this->getTile($tile->getX() + $offset[0], $tile->getY() + $offset[1]);
+            if ($adjTile instanceof Tile) {
+                $tiles[] = $adjTile;
+            }
+        }
+        return $tiles;
+    }
 }
